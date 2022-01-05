@@ -13,8 +13,6 @@ connection.connect((err) => {
   }
 });
 
-
-
 app.use(express.json());
 
 // route GET
@@ -87,7 +85,7 @@ app.delete("/categories/:id", (req, res) => {
         console.log(err);
         res.status(500).setDefaultEncoding("Error category deleting !");
       } else {
-        if (!result.affectedRows) res.status(200).send("Yeah it's deleted !");
+        if (result.affectedRows) res.status(200).send("Yeah it's deleted !");
         else res.status(400).send("category not found");
       }
     }
