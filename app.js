@@ -13,6 +13,8 @@ connection.connect((err) => {
   }
 });
 
+
+
 app.use(express.json());
 
 // route GET
@@ -32,8 +34,9 @@ app.get("/categories", (req, res) => {
 app.post("/categories", (req, res) => {
   const { title } = req.body;
   connection.query(
-    "INSERT INTO categories (title) VALUES (?),"[title],
-    (err, res) => {
+    "INSERT INTO categories (title) VALUES (?)",
+    [title],
+    (err) => {
       if (err) {
         res.status(500).send("Error saving the category");
       } else {
